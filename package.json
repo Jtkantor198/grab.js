@@ -1,0 +1,23 @@
+{
+  "name": "grab.js",
+  "version": "1.0.0",
+  "description": "Build tool for grabbing files and applying transformations (minifying, compressing).",
+  "main": "grab.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git.kantor.site/jtkantor198/grab.js"
+  },
+  "author": "Justin Kantor",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^13.1.0",
+    "browserify-string": "^1.1.1",
+    "clean-css": "^3.4.19",
+    "fs-extra": "^0.30.0",
+    "fs-finder": "^1.8.1",
+    "uglify-js": "^2.7.0"
+  }
+}

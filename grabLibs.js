@@ -1,3 +1,6 @@
+var UglifyJS = require("uglify-js");
+var CleanCSS = require('clean-css');
+var BrowserifyFn = require('browserify-string');
 module.exports = {
     browserify: function(input, options){
         return new Promise(function(resolve, reject){

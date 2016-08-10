@@ -1,17 +1,32 @@
+var Finder = require('fs-finder');
+var fse = require('fs-extra');
+var fs = require('fs');
 module.exports = function(regex){
-    var filename = regex.substring(regex.lastIndexOf("/")+1,regex.length);
-    var pathname = regex.substring(0,regex.lastIndexOf("/"));
-    var files = Finder.from(__dirname + pathname).findFiles(filename);
+    if (typeof regex == "string"){
+        filename = regex.substring(regex.lastIndexOf("/")+1,regex.length);
+        pathname = regex.substring(0,regex.lastIndexOf("/"));
+        var files = Finder.in(__dirname + pathname).findFiles(filename);
+    }
+    else if (regex.exclude){
+        filename = regex.find.substring(regex.find.lastIndexOf("/")+1,regex.find.length);
+        pathname = regex.find.substring(0,regex.find.lastIndexOf("/"));
+        var files = Finder.in(__dirname + pathname).exclude(regex.exclude).findFiles(filename);
+    }
     for (var i in files){
-        var name = files[i];
+        name = files[i];
         files[i] = {}
         files[i].data = fs.readFileSync(name);
-        name = name.substring(name.lastIndexOf("\\")+1, name.length);
+        name = name.substring((name.lastIndexOf("\\")+1 || name.lastIndexOf("/")+1), name.length);
         files[i].name = name;
     }
     //Read files keep names
     this.current = files;
     this.transform = function(transformer){
+        /*this.current = this.current.map(function(item){
+            item.data = transformer(item.data);
+            return item;
+        })*/
+        //Apply transformer
         //Check if promise is returned, if so async chain down to file write
         for (var i=0;i<this.current.length;i++){
             if (this.current[i].data.then){
@@ -42,6 +57,8 @@ module.exports = function(regex){
                 }
             }
             else{
+                //apply transformer
+                //console.log(this.current[i].name);
                 this.current[i].data = transformer(this.current[i].data);
             }
         }
@@ -50,7 +67,7 @@ module.exports = function(regex){
     this.moveTo = function(dir){
         this.current = this.current.map(function(item){
             if (item.data.then){
-                if (item.stack.length == 0 && !item.waiting){
+                if (!item.waiting && (!item.stack || item.stack.length == 0)){
                     item.data.then(function(value){fse.outputFileSync(dir + "/"+ item.name, value)});
                 }
                 else{
@@ -59,6 +76,7 @@ module.exports = function(regex){
             }
             else{
                 fse.outputFileSync(dir + "/"+ item.name, item.data);
+            //If err, create folder
             }
         });
         return true;
