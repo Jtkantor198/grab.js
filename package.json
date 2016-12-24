@@ -14,7 +14,6 @@
   "license": "MIT",
   "dependencies": {
     "browserify": "^13.1.0",
-    "browserify-string": "^1.1.1",
     "clean-css": "^3.4.19",
     "fs-extra": "^0.30.0",
     "fs-finder": "^1.8.1",
