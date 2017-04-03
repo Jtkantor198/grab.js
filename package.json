@@ -4,7 +4,7 @@
   "description": "Build tool for grabbing files and applying transformations (minifying, compressing).",
   "main": "grab.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -13,10 +13,13 @@
   "author": "Justin Kantor",
   "license": "MIT",
   "dependencies": {
+    "fs-extra": "^0.30.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
     "browserify": "^13.1.0",
     "clean-css": "^3.4.19",
-    "fs-extra": "^0.30.0",
-    "fs-finder": "^1.8.1",
+    "mocha": "^3.2.0",
     "uglify-js": "^2.7.0"
   }
 }
