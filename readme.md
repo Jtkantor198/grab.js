@@ -40,6 +40,7 @@ grab({find: "./test/sampleDir/*.js",recursive: true})
     .transform(gl.babelAndMinify)
     .moveTo({path: "./test/sampleBuild/", recursive: true});
 ```
+
 Watch 
 ---------
 You can also wrap your grab statements in ``grab.watch(dir, function)`` so your build will be rerun whenever those files are changed
@@ -48,7 +49,9 @@ grab.watch("./test/", function(){
     grab("./test/sampleDir/*.html").moveTo("./test/sampleBuild/");
     grab("./test/sampleDir/*.css").transform(gl.minifycss).moveTo("./test/sampleBuild/");
     grab("./test/sampleDir/*.js").transform(gl.browserify).transform(gl.babelAndMinify).moveTo("./test/sampleBuild/");
-});```
+});
+```
+
 If running your build when your files aren't parsable cause issues, you can revent the build from running by adding `onlyIf` function. The build will only be run if that function returns true.
 ```javascript
 grab.watch("./test/", function(){
