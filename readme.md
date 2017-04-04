@@ -60,7 +60,8 @@ grab.watch("./test/", function(){
     grab("./test/sampleDir/*.js").transform(gl.browserify).transform(gl.babelAndMinify).moveTo("./test/sampleBuild/");
 }, function(){
     return true;
-});```  
+});
+```  
 
 Custom Transformations
 ---------
