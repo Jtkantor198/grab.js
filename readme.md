@@ -9,18 +9,18 @@ Install
 
 Most of the time you'll want to install only the production dependencies
 ```bash
-npm install grab.js --only=production
+npm install git+http://git.kantor.site/jtkantor198/grab.js.git --only=production
 ```
 GrabLibs.js has a number of convenience transformations for some commmon libraries. The following will install all libraries included in GrabLibs.js.
 ```bash
-npm install 
+npm install git+http://git.kantor.site/jtkantor198/grab.js.git
 ```
 
 Basic Usage
 ---------
 You can grab files from a folder using wildcard, minify it, and move it to another folder.
 ```javascript
-grab("./test/sampleDir/*.css").transform(gl.minifycss).moveTo("./test/sampleBuild/"); 
+grab("./test/sampleDir/*.css").transform(gl.minifycss).moveTo("./test/sampleBuild/");
 ```
 You can use regular expression as well
 ```javascript
@@ -41,7 +41,7 @@ grab({find: "./test/sampleDir/*.js",recursive: true})
     .moveTo({path: "./test/sampleBuild/", recursive: true});
 ```
 
-Watch 
+Watch
 ---------
 You can also wrap your grab statements in ``grab.watch(dir, function)`` so your build will be rerun whenever those files are changed
 ```javascript
