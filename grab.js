@@ -273,3 +273,14 @@ class grab{
 module.exports = function(regex){
   return new grab(regex);
 };
+
+module.exports.watch = function(path, repeat, asLongAs){
+  repeat();
+  if (process.argv[2] == "watch"){
+    fs.watch(path, {recursive: true}, (eventType, filename) => {
+      if (!asLongAs || asLongAs()){
+              repeat();
+      }
+    });
+  }
+};
