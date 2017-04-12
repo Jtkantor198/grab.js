@@ -2,7 +2,10 @@ grab.js
 =========
 Build tool for grabbing files and applying transformations (minifying, compressing).
 
-
+Why not use gulp.js?
+* You don't want to use gulp's package system
+* You want to use regular expressions
+* You want to keep it simple
 
 Install
 ---------
