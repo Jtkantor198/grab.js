@@ -7,14 +7,17 @@ Build tool for grabbing files and applying transformations (minifying, compressi
 Install
 ---------
 
-Most of the time you'll want to install only the production dependencies
+To install run
 ```bash
-npm install git+http://git.kantor.site/jtkantor198/grab.js.git --only=production
+npm install git+http://repos.kantor.site/jtkantor198/grab.js.git
 ```
-GrabLibs.js has a number of convenience transformations for some commmon libraries. The following will install all libraries included in GrabLibs.js.
-```bash
-npm install git+http://git.kantor.site/jtkantor198/grab.js.git
+GrabLibs.js has a number of convenience transformations for some commmon libraries. You can include it using `require`
+```javascript
+grab = require("grab.js");
+gl = require("grab.js/grabLibs.js");  
 ```
+But you will still need to install the relevant dependencies for the transformation inside grabLibs.js. For instance to use `gl.minifycss` you'll need to run `npm install clean-css`.
+
 
 Basic Usage
 ---------

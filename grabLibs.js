@@ -1,11 +1,7 @@
-var UglifyJS=require("uglify-js");
-var CleanCSS=require("clean-css");
-var browserify=require("browserify");
-var stream=require("stream");
-var babel=require("babel-core");
-
 module.exports = {
     browserify: function(input, options){
+        var browserify=require("browserify");
+        var stream=require("stream");
         return new Promise(function(resolve, reject){
         		var code = new stream.Readable();
         		code._read = function(){};
@@ -30,15 +26,19 @@ module.exports = {
         });
     },
     babel: function(input){
+        var babel=require("babel-core");
         return babel.transform(input).code;
     },
     babelAndMinify: function(input){
+        var babel=require("babel-core");
         return babel.transform(input, {minified: true}).code;
     },
     uglify: function(input, options){
+        var UglifyJS=require("uglify-js");
         return UglifyJS.minify(input, {fromString: true});
     },
     minifycss: function(input){
+        var CleanCSS=require("clean-css");
         return new CleanCSS().minify(input).styles;
     }
 }
