@@ -12,7 +12,7 @@ Install
 
 To install run
 ```bash
-npm install git+http://repos.kantor.site/jtkantor198/grab.js.git
+npm install git+https://git.kantor.site/jtkantor198/grab.js.git
 ```
 GrabLibs.js has a number of convenience transformations for some commmon libraries. You can include it using `require`
 ```javascript

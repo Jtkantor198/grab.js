@@ -20,9 +20,11 @@ module.exports = {
         		    resolve(result);
         		    return true;
         		};
-        		b.bundle().pipe(outputStream);
-        }).catch(function(e){
-            console.log(e);
+            var browserifyStream = b.bundle();
+            browserifyStream.on('error', (e) => {
+              reject(e.message);
+            });
+        	browserifyStream.pipe(outputStream);
         });
     },
     babel: function(input){

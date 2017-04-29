@@ -161,10 +161,10 @@ class grab{
                      }
                 }
                 let currentName = this.current[i].name;
+
                 this.current[i].data.then(delayExecution).catch(function(e){
                    console.log("Error building "+currentName+":");
-                   console.log(e);
-
+                   (function(e){console.log("");})(e);
                 });
                 current.waiting = true;
             }
@@ -175,9 +175,18 @@ class grab{
         else{
             //apply transformer
             //console.log(this.current[i].name);
-            let currentName = this.current[i].name;
+            let currentName = this.current[i].path ? this.current[i].path: this.current[i].name;
             try{
-              this.current[i].data = transformer(this.current[i].data);
+              this.current[i].data = transformer(this.current[i].data).catch(function(e){
+                if(transformer.name){
+                   console.log("Transformer "+transformer.name+" failed for "+currentName+":");
+                   console.log(e);
+                }
+                else{
+                  console.log("Transformer failed for "+currentName+":");
+                  console.log(e);
+                }
+              });
             }
             catch(e){
               console.log("Error building "+currentName+":");
